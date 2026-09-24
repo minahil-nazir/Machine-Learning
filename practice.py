@@ -1,25 +1,26 @@
 import pandas as pd
-sf = pd.read_csv('practice.csv')
-print (sf.head())
-print (sf.tail())
-print(sf)
-print(sf.head(10))
-print(sf['Country'])
-print(sf['age'])
-print('mean of age:', sf['age'].mean())
-print("max of age:", sf['age'].max())
-print("min of age:", sf['age'].min())
-sf['Full Name'] = sf['First Name'] + ' ' + sf['Last Name']
-print(sf['Full Name'])
-result = sf['age']* sf['age']
-print(result)
+    # First, make sure you have your dataframe created
+# For example:
+sf = pd.DataFrame({
+    'Full Name': ['Bob Smith', 'Alice Williams', 'Malcolm Jones', 'Felix Brown', 'Nancy Cooper'],
+    'age': [576, 529, 484, 529, 529],
+    'Country': ['USA', 'UK', 'Canada', 'USA', 'UK'],
+    'First Name': ['Bob', 'Alice', 'Malcolm', 'Felix', 'Nancy']
+})
+
 def transform_country(country):
-    if country == 'USA':
-        return 'United States'
-    elif country == 'Brasil':
-        return 'Brazil'
-    else:
-        return country
-    sf['Country'] = sf['Country'].apply(transform_country)
-    print(sf['Country'])
-    print(sf)
+    # Do something with the country if needed, but remove the return
+    # or keep it at the end
+    return country  # This should be the LAST line in the function
+
+# Apply the transformation (but since it just returns the same value, 
+# you might not need this function at all)
+sf['Country'] = sf['Country'].apply(transform_country)
+print(sf['Country'])
+print(sf)
+print('number of rows:', len(sf))
+
+# Sort and get first 10 first names
+sf_sorted = sf.sort_values('First Name', ascending=True)
+first_name = sf_sorted[0:10]['First Name']
+print(first_name)
